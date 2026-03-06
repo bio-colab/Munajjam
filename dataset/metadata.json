@@ -1,0 +1,7 @@
+{
+  "version": "0.1.0",
+  "surahs": [1],
+  "target_reciters": 20,
+  "status": "starter",
+  "notes": "Starter metadata for benchmark dataset expansion"
+}

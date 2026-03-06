@@ -35,6 +35,7 @@ jobs:
             "pandas>=2.0.0" \
             "rapidfuzz>=3.0.0" \
             "pytest>=7.0.0" \
+            "pytest-cov>=4.1.0" \
             "pytest-asyncio>=0.21.0" \
             "ruff>=0.1.0" \
             "mypy>=1.0.0"
@@ -51,8 +52,25 @@ jobs:
         working-directory: ./munajjam
         run: mypy munajjam --ignore-missing-imports
 
-      - name: Run tests
-        run: pytest tests/unit/ -v --tb=short
+      - name: Run unit tests with coverage gate
+        run: |
+          pytest tests/unit/ \
+            -v --tb=short \
+            --cov=munajjam \
+            --cov-report=term-missing \
+            --cov-fail-under=85
+
+      - name: Validate dataset schema and timestamps
+        run: python dataset/validate.py
+
+      - name: Generate benchmark artifact
+        run: PYTHONPATH=munajjam python benchmarks/run.py --output benchmarks/results/latest.json
+
+      - name: Upload benchmark artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results-${{ matrix.python-version }}
+          path: benchmarks/results/latest.json
 
   build:
     runs-on: ubuntu-latest

@@ -115,15 +115,17 @@ output_*/
 cache/
 
 # Generated JSON files (alignment outputs)
-# Allow example outputs in munajjam/examples
+# Allow curated JSON fixtures and docs assets
 *.json
 !munajjam/examples/*.json
+!dataset/*.json
+!dataset/ground_truth/*.json
+!tests/fixtures/expected_outputs/*.json
 
 # Generated HTML/CSV (analysis outputs)
 *.html
 *.csv
 batch_process.py
-*.mp3
 
 # Local-only directories (not part of the library)
 v2/

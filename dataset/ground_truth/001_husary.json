@@ -1,0 +1,11 @@
+{
+  "surah_id": 1,
+  "reciter": "husary",
+  "source": "placeholder",
+  "license": "TBD",
+  "review_status": "draft",
+  "ayahs": [
+    {"ayah_number": 1, "start": 0.0, "end": 5.5},
+    {"ayah_number": 2, "start": 5.6, "end": 9.8}
+  ]
+}
